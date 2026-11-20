@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.7-pg16
+    container_name: crtc-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: crtc
+      POSTGRES_PASSWORD: crtc
+      POSTGRES_DB: crtc
+    ports:
+      # Host port 5433 (not 5432) so it doesn't clash with a Postgres already installed on the host.
+      - "5433:5432"
+    volumes:
+      - crtc_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crtc -d crtc"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  crtc_pgdata:

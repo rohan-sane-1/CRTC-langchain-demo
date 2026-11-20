@@ -1,0 +1,26 @@
+# secrets (any folder)
+.env
+.env.*
+!.env.example
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# node
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+
+# editor / OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Claude Code local settings
+.claude/settings.local.json
